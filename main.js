@@ -35,7 +35,7 @@
         revisedTime += v;
     });
     $('<button>').appendTo(ui).text('定刻').on('click', () => {
-        viewLapTime(totalTime);
+        viewLapTime(revisedTime);
     });
     addBtn('遅い', time => {
         const v = -time - revisedTime;
