@@ -23,7 +23,7 @@
             on.hide();
             time = performance.now();
         });
-        const off = $('<button>').appendTo(ui).text(`{ttl}(計測終了)`).on('click', () => {
+        const off = $('<button>').appendTo(ui).text(`${ttl}(計測終了)`).on('click', () => {
             $('button').prop('disabled', false);
             off.hide();
             on.show();
