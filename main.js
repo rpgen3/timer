@@ -29,7 +29,7 @@
             on.show();
             func(performance.now() - time);
         }).hide();
-        return on;
+        return off;
     };
     let revisedTime = 0;
     addBtn('早い', time => {
