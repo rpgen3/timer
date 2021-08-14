@@ -16,13 +16,13 @@
     const addBtn = (ttl, func) => {
         let time;
         const on = $('<button>').appendTo(ui).text(ttl).on('click', () => {
-            $('<button>').prop('disabled', false);
-            off.show().prop('disabled', true);
+            $('button').prop('disabled', true);
+            off.show().prop('disabled', false);
             on.hide();
             time = performance.now();
         });
         const off = $('<button>').appendTo(ui).text(`{ttl}(計測終了)`).on('click', () => {
-            $('<button>').prop('disabled', false);
+            $('button').prop('disabled', false);
             off.hide();
             on.show();
             func(performance.now() - time);
