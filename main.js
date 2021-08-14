@@ -11,8 +11,10 @@
     $('<h1>').appendTo(html).text('lap timer');
     const ui = $('<div>').appendTo(html);
     const rpgen3 = await importAll([
-        'input'
+        'input',
+        'css'
     ].map(v => `https://rpgen3.github.io/mylib/export/${v}.mjs`));
+    rpgen3.addCSS('main.css');
     const addBtn = (ttl, func) => {
         let time;
         const on = $('<button>').appendTo(ui).text(ttl).on('click', () => {
@@ -46,6 +48,7 @@
         revisedTime = index = 0;
         view.empty();
     });
+    ui.children().each((i,e) => $(e).after('<br>'));
     const view = $('<div>').appendTo(html);
     let index = 0;
     const viewLapTime = time => rpgen3.addInputStr(view, {
