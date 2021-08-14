@@ -8,20 +8,25 @@
         padding: '1em',
         'user-select': 'none'
     });
+    $('<h1>').appendTo(html).text('lap timer');
     const ui = $('<div>').appendTo(html);
     const rpgen3 = await importAll([
         'input'
     ].map(v => `https://rpgen3.github.io/mylib/export/${v}.mjs`));
     const addBtn = (ttl, func) => {
-        const btn = $('<button>').appendTo(ui).text(ttl).on('click', () => {
-            const time = performance.now();
-            $('<button>').prop('disabled', true);
-            btn.prop('disabled', false).text(`{ttl}(計測終了)`).on('click', () => {
-                $('<button>').prop('disabled', false);
-                btn.text(ttl);
-                func(performance.now() - time);
-            });
+        let time;
+        const on = $('<button>').appendTo(ui).text(ttl).on('click', () => {
+            $('<button>').prop('disabled', false);
+            off.show().prop('disabled', true);
+            on.hide();
+            time = performance.now();
         });
+        const off = $('<button>').appendTo(ui).text(`{ttl}(計測終了)`).on('click', () => {
+            $('<button>').prop('disabled', false);
+            off.hide();
+            on.show();
+            func(performance.now() - time);
+        }).hide();
     };
     let totalTime = 0;
     addBtn('早い', time => {
