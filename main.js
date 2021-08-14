@@ -28,24 +28,29 @@
             func(performance.now() - time);
         }).hide();
     };
-    let totalTime = 0;
+    let revisedTime = 0;
     addBtn('早い', time => {
-        viewLapTime(totalTime -= time);
+        const v = time - revisedTime;
+        viewLapTime(v);
+        revisedTime += v;
     });
     $('<button>').appendTo(ui).text('定刻').on('click', () => {
         viewLapTime(totalTime);
     });
     addBtn('遅い', time => {
-        viewLapTime(totalTime += time);
+        const v = -time - revisedTime;
+        viewLapTime(v);
+        revisedTime += v;
     });
     $('<button>').appendTo(ui).text('リセット').on('click', () => {
-        totalTime = index = 0;
+        revisedTime = index = 0;
         view.empty();
     });
     const view = $('<div>').appendTo(html);
     let index = 0;
-    const viewLapTime = value => rpgen3.addInputStr(view, {
-        value, label: index++,
+    const viewLapTime = time => rpgen3.addInputStr(view, {
+        value: Math.ceil(time),
+        label: index++,
         copy: true
     });
 })();
