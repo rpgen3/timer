@@ -29,26 +29,27 @@
             on.show();
             func(performance.now() - time);
         }).hide();
+        return on;
     };
     let revisedTime = 0;
     addBtn('早い', time => {
         const v = time - revisedTime;
         viewLapTime(v);
         revisedTime += v;
-    });
-    $('<button>').appendTo(ui).text('定刻').on('click', () => {
+    }).addClass('btn');
+    $('<button>').appendTo(ui).addClass('btn').text('定刻').on('click', () => {
         viewLapTime(revisedTime);
     });
     addBtn('遅い', time => {
         const v = -time - revisedTime;
         viewLapTime(v);
         revisedTime += v;
-    });
-    $('<button>').appendTo(ui).text('リセット').on('click', () => {
+    }).addClass('btn');
+    $('<button>').appendTo(ui).addClass('btn').text('リセット').on('click', () => {
         revisedTime = index = 0;
         view.empty();
     });
-    $('button').after('<br><br>');
+    $('.btn').after('<br><br>');
     const view = $('<div>').appendTo(html);
     let index = 0;
     const viewLapTime = time => rpgen3.addInputStr(view, {
