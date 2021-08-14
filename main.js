@@ -48,7 +48,6 @@
         revisedTime = index = 0;
         view.empty();
     });
-    ui.children().each((i,e) => $(e).after('<br>'));
     const view = $('<div>').appendTo(html);
     let index = 0;
     const viewLapTime = time => rpgen3.addInputStr(view, {
